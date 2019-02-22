@@ -8,5 +8,22 @@
 
     .bodyBox {
         height: calc(100% - #{$headerHeight});
+        position: relative;
+
+        $navWidth: 200px;
+        .navBox {
+            height: 100%;
+            width: $navWidth;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border: 1px solid red;
+        }
+
+        .viewBox {
+            height: 100%;
+            margin-left: $navWidth;
+            border: 1px solid blue;
+        }
     }
 }

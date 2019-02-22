@@ -1,0 +1,55 @@
+$vMargin: 15px;
+$hMargin: 40px;
+$borderRadius: 5px;
+$border: 1px solid #ddd;
+.ClusterDeploy {
+    height: calc(100% - #{$vMargin * 2});
+    margin: $vMargin $hMargin;
+    border: $border;
+    border-radius: $borderRadius;
+
+    $topBoxHeight: 190px;
+    .topBox {
+        height: $topBoxHeight;
+        background: linear-gradient(180deg, #fff, #f9f9f9);
+        border-top-left-radius: $borderRadius;
+        border-top-right-radius: $borderRadius;
+
+        $titleHeight: 90px;
+        .title {
+            font-size: 24px;
+            text-align: center;
+            height: $titleHeight;
+            line-height: $titleHeight;
+        }
+
+        .stepBox {
+            height: calc(100% - #{$titleHeight});
+        }
+    }
+
+    $bottomBoxHeight: 55px;
+    .bottomBox {
+        height: $bottomBoxHeight;
+        background: #f9f9f9;
+        border-bottom-left-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
+        position: relative;
+
+        .buttonBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 32px;
+            width: calc(100% - 40px);
+        }
+    }
+
+    .mainBox {
+        height: calc(100% - #{$topBoxHeight + $bottomBoxHeight});
+        background: #fff;
+        border-top: $border;
+        border-bottom: $border;
+    }
+}
