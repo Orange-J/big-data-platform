@@ -51,5 +51,18 @@ $border: 1px solid #ddd;
         background: #fff;
         border-top: $border;
         border-bottom: $border;
+        position: relative;
+
+        $itemBoxTopMargin: 35px;
+        $itemBoxLRMargin: 60px;
+        .itemBox {
+            position: absolute;
+            top: $itemBoxTopMargin;
+            left: 50%;
+            transform: translateX(-50%);
+            height: calc(100% - #{$itemBoxTopMargin});
+            width: calc(100% - #{$itemBoxLRMargin * 2});
+            border: 1px solid red;
+        }
     }
 }

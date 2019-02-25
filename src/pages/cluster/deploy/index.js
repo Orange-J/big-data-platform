@@ -52,7 +52,9 @@ class ClusterDeploy extends Component {
                         </Steps>
                     </div>
                 </div>
-                <div className={styles.mainBox}></div>
+                <div className={styles.mainBox}>
+                    <div className={styles.itemBox}></div>
+                </div>
                 <div className={styles.bottomBox}>
                     <div className={styles.buttonBox}>
                         {
