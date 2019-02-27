@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Steps, Button, message } from 'antd';
+import BaseConfig from './BaseConfig';
 import styles from './index.module.scss';
 
 const steps = [
@@ -53,7 +54,7 @@ class ClusterDeploy extends Component {
                     </div>
                 </div>
                 <div className={styles.mainBox}>
-                    <div className={styles.itemBox}></div>
+                    <div className={styles.itemBox}><BaseConfig /></div>
                 </div>
                 <div className={styles.bottomBox}>
                     <div className={styles.buttonBox}>
