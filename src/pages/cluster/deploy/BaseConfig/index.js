@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Icon, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import styles from './index.module.scss';
 
 class BaseConfig extends Component {
@@ -10,8 +10,13 @@ class BaseConfig extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit () {
-        // TODO: 提交数据
+    handleSubmit (e) {
+        e.preventDefault();
+        this.props.form.validateFields((err) => {
+            if (!err) {
+                message.success('保存成功');
+            }
+        });
     }
 
     render () {
@@ -24,6 +29,13 @@ class BaseConfig extends Component {
                 span: 18
             }
         };
+        const tailFormItemLayout = {
+            wrapperCol: {
+                span: 4,
+                offset: 20
+            }
+        };
+        const MAX_LEN = 16;
 
         return (
             <div className={styles.BaseConfigWrap}>
@@ -31,7 +43,10 @@ class BaseConfig extends Component {
                     <Form.Item label="集群名称" {...inputItemLayout}>
                         {
                             getFieldDecorator('username', {
-                                rules: [{ required: true, message: '请输入集群名称' }]
+                                rules: [
+                                    { required: true, message: '请输入集群名称' },
+                                    { max: MAX_LEN, message: `集群名称不可超过${MAX_LEN}字符` }
+                                ]
                             })(
                                 <Input />
                             )
@@ -40,11 +55,14 @@ class BaseConfig extends Component {
                     <Form.Item label="描述" {...inputItemLayout}>
                         {
                             getFieldDecorator('desc', {
-                                rules: [{ required: true, message: '请输入描述' }]
+                                rules: [{ max: 16, message: `描述不可超过${MAX_LEN}字符` }]
                             })(
                                 <Input />
                             )
                         }
+                    </Form.Item>
+                    <Form.Item {...tailFormItemLayout}>
+                        <Button type="primary" htmlType="submit" style={{ width: '100%' }}>保存</Button>
                     </Form.Item>
                 </Form>
             </div>
