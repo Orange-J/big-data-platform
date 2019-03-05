@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, message } from 'antd';
+import ServerTable from './ServerTable';
 import styles from './index.module.scss';
 
 class BaseConfig extends Component {
@@ -23,23 +24,31 @@ class BaseConfig extends Component {
         const { getFieldDecorator } = this.props.form;
         const inputItemLayout = {
             labelCol: {
-                span: 6
+                span: 3
             },
             wrapperCol: {
-                span: 18
+                span: 10
             }
         };
         const tailFormItemLayout = {
             wrapperCol: {
-                span: 4,
-                offset: 20
+                span: 2,
+                offset: 3
+            }
+        };
+        const serverTableItemLayout = {
+            labelCol: {
+                span: 3
+            },
+            wrapperCol: {
+                span: 21
             }
         };
         const MAX_LEN = 16;
 
         return (
             <div className={styles.BaseConfigWrap}>
-                <Form onSubmit={this.handleSubmit} hideRequiredMark={true}>
+                <Form onSubmit={this.handleSubmit} hideRequiredMark={false}>
                     <Form.Item label="集群名称" {...inputItemLayout}>
                         {
                             getFieldDecorator('username', {
@@ -63,6 +72,12 @@ class BaseConfig extends Component {
                     </Form.Item>
                     <Form.Item {...tailFormItemLayout}>
                         <Button type="primary" htmlType="submit" style={{ width: '100%' }}>保存</Button>
+                    </Form.Item>
+                </Form>
+
+                <Form>
+                    <Form.Item label="服务器节点配置" {...serverTableItemLayout}>
+                        <ServerTable />
                     </Form.Item>
                 </Form>
             </div>
