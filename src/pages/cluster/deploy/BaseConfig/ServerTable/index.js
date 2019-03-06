@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Table, Divider } from 'antd';
-
+import { Table, Divider, Button, Icon } from 'antd';
+import styles from './index.module.scss';
 
 
 const data = [
@@ -58,21 +58,33 @@ class ServerTable extends Component {
                 key: 'action',
                 render: (text, record) => (
                     <span>
-                        <button onClick={() => this.handleEdit(record)}>编辑</button>
+                        <button className={styles.tableButton} onClick={() => this.handleEdit(record)}>编辑</button>
                         <Divider type="vertical" />
-                        <button onClick={() => this.handleDelete(record)}>删除</button>
+                        <button className={styles.tableButton} onClick={() => this.handleDelete(record)}>删除</button>
                     </span>
                 )
             }
         ];
 
         return (
-            <Table
-                columns={columns}
-                dataSource={data}
-                bordered={true}
-                rowSelection={{}}
-            />
+            <div className={styles['cluster-deploy__ServerTableWrap']}>
+                <div className={styles.tbar}>
+                    <Button type="primary">
+                        <Icon type="plus" />新增
+                    </Button>
+                    <Button type="primary">
+                        <Icon type="delete" />删除
+                    </Button>
+                </div>
+                <div className={styles.tableBox}>
+                    <Table
+                        columns={columns}
+                        dataSource={data}
+                        bordered={true}
+                        rowSelection={{}}
+                    />
+                </div>
+            </div>
         );
     }
 }

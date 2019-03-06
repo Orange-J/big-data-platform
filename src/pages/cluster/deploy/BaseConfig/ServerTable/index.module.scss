@@ -1,0 +1,28 @@
+.cluster-deploy__ServerTableWrap {
+    width: 100%;
+    height: 100%;
+
+    .tableButton {
+        border: none;
+        background: none;
+        color: #1890ff;
+        outline: none;
+        cursor: pointer;
+    }
+
+    $tbarHeight: 50px;
+    .tbar {
+        height: $tbarHeight;
+        border: 1px solid #e8e8e8;
+        border-bottom: none;
+        padding: 5px 0 0 10px;
+
+        :global(.ant-btn) {
+            margin-right: 10px;
+        }
+    }
+
+    .tableBox {
+        height: calc(100% - #{$tbarHeight});
+    }
+}
