@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import { Table, Divider, Button, Icon } from 'antd';
+import axios from 'axios';
+import './mock';
 import styles from './index.module.scss';
-
-
-const data = [
-    {
-        key: '1',
-        name: '节点1',
-        ip_pub: '1.1.1.1',
-        ip_pri: '2.2.2.2',
-        username: 'admin',
-        password: '123'
-    }
-];
 
 class ServerTable extends Component {
 
     constructor (props) {
         super(props);
 
+        this.state = {
+            serverList: []
+        };
+
         this.handleEdit = this.handleEdit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.fetchServerNode = this.fetchServerNode.bind(this);
     }
 
     handleEdit () {
@@ -29,6 +24,17 @@ class ServerTable extends Component {
 
     handleDelete () {
         // TODO: 删除功能
+    }
+
+    async fetchServerNode () {
+        let json = await axios.get('/mock/server-node');
+        this.setState({
+            serverList: json.data.data
+        });
+    }
+
+    componentDidMount () {
+        this.fetchServerNode();
     }
 
     render () {
@@ -79,7 +85,7 @@ class ServerTable extends Component {
                 <div className={styles.tableBox}>
                     <Table
                         columns={columns}
-                        dataSource={data}
+                        dataSource={this.state.serverList}
                         bordered={true}
                         rowSelection={{}}
                     />
