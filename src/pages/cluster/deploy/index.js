@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Steps, Button, message } from 'antd';
+import CreateClusterForm from './CreateClusterForm';
 import BaseConfig from './BaseConfig';
 import styles from './index.module.scss';
 
 const steps = [
-    '基本信息',
+    '创建集群',
+    '配置服务节点',
     '选择组件模板',
     'BD组件安装',
     '组件参数配置',
@@ -15,6 +17,7 @@ class ClusterDeploy extends Component {
 
     constructor (props) {
         super(props);
+
         this.state = {
             curStep: 0
         };
@@ -54,7 +57,12 @@ class ClusterDeploy extends Component {
                     </div>
                 </div>
                 <div className={styles.mainBox}>
-                    <div className={styles.itemBox}><BaseConfig /></div>
+                    {
+                        this.state.curStep === 0 && <div className={styles.itemBox}><CreateClusterForm /></div>
+                    }
+                    {
+                        this.state.curStep === 1 && <div className={styles.itemBox}><BaseConfig /></div>
+                    }
                 </div>
                 <div className={styles.bottomBox}>
                     <div className={styles.buttonBox}>
