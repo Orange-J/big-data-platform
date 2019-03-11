@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, message } from 'antd';
+import axios from 'axios';
 import styles from './index.module.scss';
+import './mock';
 
 class CreateClusterForm extends Component {
 
@@ -8,15 +10,32 @@ class CreateClusterForm extends Component {
         super(props);
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this._ajaxSubmit = this._ajaxSubmit.bind(this);
     }
 
     handleSubmit (e) {
         e.preventDefault();
+
+        let me = this;
         this.props.form.validateFields((err) => {
             if (!err) {
-                message.success('保存成功');
+                me._ajaxSubmit();
             }
         });
+    }
+
+    async _ajaxSubmit () {
+        let json = (await axios.post('/mock/create-cluster', {
+            data: this.props.form.getFieldsValue()
+        })).data;
+
+        if (!json.success) {
+            message.error('操作失败');
+            return;
+        }
+
+        // TODO: 将clusterid存入redux
+        message.success('操作成功');
     }
 
     render () {
