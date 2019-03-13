@@ -61,38 +61,58 @@ class CreateClusterForm extends Component {
         const MAX_LEN = 16;
 
         return (
-            <div className={styles['page-cluster-deploy__CreateClusterWrap']}>
-                <Form onSubmit={this.handleSubmit} hideRequiredMark={false}>
-                    <Form.Item label="集群名称" {...inputItemLayout}>
-                        {
-                            getFieldDecorator('username', {
-                                rules: [
-                                    { required: true, message: '请输入集群名称' },
-                                    { max: MAX_LEN, message: `集群名称不可超过${MAX_LEN}字符` }
-                                ]
-                            })(
-                                <Input />
-                            )
-                        }
-                    </Form.Item>
-                    <Form.Item label="描述" {...inputItemLayout}>
-                        {
-                            getFieldDecorator('desc', {
-                                rules: [{ max: MAX_LEN, message: `描述不可超过${MAX_LEN}字符` }]
-                            })(
-                                <Input />
-                            )
-                        }
-                    </Form.Item>
-                    <Form.Item {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit" style={{ width: '100%' }}>保存</Button>
-                    </Form.Item>
-                </Form>
-            </div>
+            <Form onSubmit={this.handleSubmit} hideRequiredMark={false}>
+                <Form.Item label="集群名称" {...inputItemLayout}>
+                    {
+                        getFieldDecorator('username', {
+                            rules: [
+                                { required: true, message: '请输入集群名称' },
+                                { max: MAX_LEN, message: `集群名称不可超过${MAX_LEN}字符` }
+                            ]
+                        })(
+                            <Input />
+                        )
+                    }
+                </Form.Item>
+                <Form.Item label="描述" {...inputItemLayout}>
+                    {
+                        getFieldDecorator('desc', {
+                            rules: [{ max: MAX_LEN, message: `描述不可超过${MAX_LEN}字符` }]
+                        })(
+                            <Input />
+                        )
+                    }
+                </Form.Item>
+                <Form.Item {...tailFormItemLayout}>
+                    <Button type="primary" htmlType="submit" style={{ width: '100%' }}>保存</Button>
+                </Form.Item>
+            </Form>
         );
     }
 }
 
 CreateClusterForm = Form.create({name: 'create_cluster_form'})(CreateClusterForm);
 
-export default CreateClusterForm;
+// TODO: 后续应将此类和上面的类拆分到两个文件
+export default class CreateCluster extends Component {
+
+    beforeSwitchToPrev () {
+        this.props.onReadyToPrev();
+    }
+
+    beforeSwitchToNext () {
+        this.props.onReadyToNext();
+    }
+
+    beforeShow () {
+
+    }
+
+    render () {
+        return (
+            <div className={styles['page-cluster-deploy__CreateClusterWrap']}>
+                <CreateClusterForm />
+            </div>
+        );
+    }
+};

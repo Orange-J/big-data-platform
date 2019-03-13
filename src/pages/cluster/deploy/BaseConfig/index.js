@@ -11,6 +11,18 @@ class BaseConfig extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    beforeSwitchToPrev () {
+        this.props.onReadyToPrev();
+    }
+
+    beforeSwitchToNext () {
+        this.props.onReadyToNext();
+    }
+
+    beforeShow () {
+
+    }
+
     handleSubmit (e) {
         e.preventDefault();
         this.props.form.validateFields((err) => {
