@@ -1,16 +1,8 @@
 import { createStore } from 'redux';
-
-const reducer = function (state = {}, action) {
-    switch (action.type) {
-        case 'SET_CUR_CLUSTER_ID':
-            return { ...state, clusterId: action.id };
-        default:
-            return state;
-    }
-};
+import reducer from './reducer';
 
 const initState = {
-    clusterId: null
+    deployingClusterId: null
 };
 const store = createStore(reducer, initState);
 

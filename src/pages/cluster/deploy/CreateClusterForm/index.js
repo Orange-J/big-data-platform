@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import axios from 'axios';
+import store from 'src/store';
+import { updateDeployingClusterId } from 'src/store/actions';
 import styles from './index.module.scss';
 import './mock';
 
@@ -34,7 +36,8 @@ class CreateClusterForm extends Component {
             return;
         }
 
-        // TODO: 将clusterid存入redux
+        // 将正在部署的集群id存入redux
+        store.dispatch(updateDeployingClusterId(json.cluster_id));
         message.success('操作成功');
     }
 
