@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Steps, Button, message } from 'antd';
-import CreateCluster from './CreateClusterForm';
+import CreateCluster from './CreateCluster';
 import BaseConfig from './BaseConfig';
 import styles from './index.module.scss';
 
