@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Steps, Button, message } from 'antd';
 import CreateCluster from './CreateCluster';
-import BaseConfig from './BaseConfig';
+import ServerConfig from './ServerConfig';
 import styles from './index.module.scss';
 
 const steps = [
@@ -119,7 +119,7 @@ class ClusterDeploy extends Component {
                     }
                     {
                         this.state.curStep === 2 && (<div className={styles.itemBox}>
-                            <BaseConfig
+                            <ServerConfig
                                 ref={this.ref_2}
                                 onReadyToPrev={this.onReadyToPrev}
                                 onReadyToNext={this.onReadyToNext}
