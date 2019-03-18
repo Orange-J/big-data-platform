@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Steps, Button, message } from 'antd';
 import CreateCluster from './CreateCluster';
 import ServerConfig from './ServerConfig';
+import TplConfig from './TplConfig';
+import ServiceConfig from './ServiceConfig';
+import CompArgsConfig from './CompArgsConfig';
+import Setup from './Setup';
 import styles from './index.module.scss';
 
 const steps = [
@@ -37,9 +41,10 @@ class ClusterDeploy extends Component {
     _createRefs () {
         this.ref_1 = React.createRef();
         this.ref_2 = React.createRef();
-        // this.ref_3 = React.createRef();
-        // this.ref_4 = React.createRef();
-        // this.ref_5 = React.createRef();
+        this.ref_3 = React.createRef();
+        this.ref_4 = React.createRef();
+        this.ref_5 = React.createRef();
+        this.ref_6 = React.createRef();
     }
 
     _onPrevClick () {
@@ -121,6 +126,42 @@ class ClusterDeploy extends Component {
                         this.state.curStep === 2 && (<div className={styles.itemBox}>
                             <ServerConfig
                                 ref={this.ref_2}
+                                onReadyToPrev={this.onReadyToPrev}
+                                onReadyToNext={this.onReadyToNext}
+                            />
+                        </div>)
+                    }
+                    {
+                        this.state.curStep === 3 && (<div className={styles.itemBox}>
+                            <TplConfig
+                                ref={this.ref_3}
+                                onReadyToPrev={this.onReadyToPrev}
+                                onReadyToNext={this.onReadyToNext}
+                            />
+                        </div>)
+                    }
+                    {
+                        this.state.curStep === 4 && (<div className={styles.itemBox}>
+                            <ServiceConfig
+                                ref={this.ref_4}
+                                onReadyToPrev={this.onReadyToPrev}
+                                onReadyToNext={this.onReadyToNext}
+                            />
+                        </div>)
+                    }
+                    {
+                        this.state.curStep === 5 && (<div className={styles.itemBox}>
+                            <CompArgsConfig
+                                ref={this.ref_5}
+                                onReadyToPrev={this.onReadyToPrev}
+                                onReadyToNext={this.onReadyToNext}
+                            />
+                        </div>)
+                    }
+                    {
+                        this.state.curStep === 6 && (<div className={styles.itemBox}>
+                            <Setup
+                                ref={this.ref_6}
                                 onReadyToPrev={this.onReadyToPrev}
                                 onReadyToNext={this.onReadyToNext}
                             />
