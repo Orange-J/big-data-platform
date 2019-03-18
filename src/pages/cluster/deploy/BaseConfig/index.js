@@ -9,6 +9,13 @@ class BaseConfig extends Component {
         super(props);
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.beforeShow = this.beforeShow.bind(this);
+        this.beforeSwitchToPrev = this.beforeSwitchToPrev.bind(this);
+        this.beforeSwitchToNext = this.beforeSwitchToNext.bind(this);
+    }
+
+    beforeShow () {
+
     }
 
     beforeSwitchToPrev () {
@@ -17,10 +24,6 @@ class BaseConfig extends Component {
 
     beforeSwitchToNext () {
         this.props.onReadyToNext();
-    }
-
-    beforeShow () {
-
     }
 
     handleSubmit (e) {
