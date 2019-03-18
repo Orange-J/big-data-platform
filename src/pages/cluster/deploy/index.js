@@ -11,9 +11,9 @@ import styles from './index.module.scss';
 const steps = [
     '创建集群',
     '配置服务节点',
-    '选择组件模板',
-    'BD组件安装',
-    '组件参数配置',
+    '配置组件模板',
+    '配置服务',
+    '配置组件参数',
     '部署安装'
 ];
 const minStepIndex = 1;
@@ -100,6 +100,17 @@ class ClusterDeploy extends Component {
     }
 
     render () {
+        const comps = [
+            CreateCluster,
+            ServerConfig,
+            TplConfig,
+            ServiceConfig,
+            CompArgsConfig,
+            Setup
+        ];
+        let curStep = this.state.curStep;
+        let ActiveComp = comps[curStep - 1];
+
         return (
             <div className={styles.ClusterDeploy}>
                 <div className={styles.topBox}>
@@ -113,60 +124,13 @@ class ClusterDeploy extends Component {
                     </div>
                 </div>
                 <div className={styles.mainBox}>
-                    {
-                        this.state.curStep === minStepIndex && (<div className={styles.itemBox}>
-                            <CreateCluster
-                                ref={this.ref_1}
-                                onReadyToPrev={this.onReadyToPrev}
-                                onReadyToNext={this.onReadyToNext}
-                            />
-                        </div>)
-                    }
-                    {
-                        this.state.curStep === 2 && (<div className={styles.itemBox}>
-                            <ServerConfig
-                                ref={this.ref_2}
-                                onReadyToPrev={this.onReadyToPrev}
-                                onReadyToNext={this.onReadyToNext}
-                            />
-                        </div>)
-                    }
-                    {
-                        this.state.curStep === 3 && (<div className={styles.itemBox}>
-                            <TplConfig
-                                ref={this.ref_3}
-                                onReadyToPrev={this.onReadyToPrev}
-                                onReadyToNext={this.onReadyToNext}
-                            />
-                        </div>)
-                    }
-                    {
-                        this.state.curStep === 4 && (<div className={styles.itemBox}>
-                            <ServiceConfig
-                                ref={this.ref_4}
-                                onReadyToPrev={this.onReadyToPrev}
-                                onReadyToNext={this.onReadyToNext}
-                            />
-                        </div>)
-                    }
-                    {
-                        this.state.curStep === 5 && (<div className={styles.itemBox}>
-                            <CompArgsConfig
-                                ref={this.ref_5}
-                                onReadyToPrev={this.onReadyToPrev}
-                                onReadyToNext={this.onReadyToNext}
-                            />
-                        </div>)
-                    }
-                    {
-                        this.state.curStep === 6 && (<div className={styles.itemBox}>
-                            <Setup
-                                ref={this.ref_6}
-                                onReadyToPrev={this.onReadyToPrev}
-                                onReadyToNext={this.onReadyToNext}
-                            />
-                        </div>)
-                    }
+                    <div className={styles.itemBox}>
+                        <ActiveComp
+                            ref={this[`ref_${curStep}`]}
+                            onReadyToPrev={this.onReadyToPrev}
+                            onReadyToNext={this.onReadyToNext}
+                        />
+                    </div>
                 </div>
                 <div className={styles.bottomBox}>
                     <div className={styles.buttonBox}>
